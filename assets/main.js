@@ -67,7 +67,7 @@ var myDay = [
 
 //show the date and time from the present moment
 function getHeaderDate() {
-    const timeNow = moment().format('LLLL');
+    const timeNow = moment().format('dddd, MMMM Do');
     $("#currentDay").text(timeNow);
     console.log(timeNow);
 }
@@ -81,6 +81,7 @@ myDay.forEach(function(thisHour) {
      "class": "row"
 
     });
+    
     $(".container").append(hourRow);
 
      // creates time field
@@ -89,6 +90,40 @@ myDay.forEach(function(thisHour) {
      .attr({
          "class": "col-md-2 hour"
  });
+
+ // creates area to add events
+ var eventEntry = $("<div>")
+    .attr({
+        "class": "col-md-9 description p-0"
+    });
+    //shows if event is past, present or future
+    var eventData = $("<textarea>");
+    eventEntry.append(eventData);
+    eventData.attr("id", thisHour.id);
+    if (thisHour.time < moment().format("HH")) {
+        eventData.attr ({
+            "class": "past",
+        })
+    } else if (thisHour.time === moment().format("HH")) {
+        eventData.attr ({
+            "class": "present"
+        })
+    } else if (thisHour.time === moment().format("HH")) {
+        eventData.attr({
+            "class": "future"
+        })
+    }
+
+    // Create save button   
+
+let saveBtn = $("<i class='far fa-save fa-lg'></i>")
+var savePlan = $("<button>")
+.attr({
+    "class": "col-md-1 saveBtn"
+});
+savePlan.append(saveBtn);
+hourRow.append(hourIndex, eventEntry, savePlan);
+})
 
 
 // let nowHour24 = moment().format('H');
@@ -102,27 +137,27 @@ myDay.forEach(function(thisHour) {
 // }
 
 //using a save icon to save the event in the daily calendar
-const saveIcon = $("#display-icon")
+// const saveIcon = $("#display-icon")
 
-// Get the stored items from the to-do list from local storage
-let storedPlans = JSON.parse(localStorage.getItem("storedPlans"));
-if (test) {console.log(storedPlans)}
+// // Get the stored items from the to-do list from local storage
+// let storedPlans = JSON.parse(localStorage.getItem("storedPlans"));
+// if (test) {console.log(storedPlans)}
 
-//If the plans were retrieved from local storage, update the plan array to it
+// //If the plans were retrieved from local storage, update the plan array to it
 
-//set variable referencing planner element
-let $plannerDiv = $("#formPlanner");
-$plannerDiv.empty();
+// //set variable referencing planner element
+// let $plannerDiv = $("#formPlanner");
+// $plannerDiv.empty();
 
 
-// build the calendar by row for a fixed number of hours
-for (let hour =9; hour <=17; hour ++) {
-    let index = hour -9;
-}
+// // build the calendar by row for a fixed number of hours
+// for (let hour =9; hour <=17; hour ++) {
+//     let index = hour -9;
+// }
 
-// build the row components in the calendar element
+// // build the row components in the calendar element
 
-let $rowDiv =$("<div>");
-$rowDiv.addClass("row");
-$rowDiv.addClass("plannerRow");
-$rowDiv.attr("hour-index", hour);
+// let $rowDiv =$("<div>");
+// $rowDiv.addClass("row");
+// $rowDiv.addClass("plannerRow");
+// $rowDiv.attr("hour-index", hour
