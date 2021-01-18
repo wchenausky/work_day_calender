@@ -72,6 +72,35 @@ function getHeaderDate() {
     console.log(timeNow);
 }
 
+//saves data entry to localStorage
+function saveSchedule() {
+    localStorage.setItem("myDay", JSON.stringify(myDay));
+    console.log(myDay)
+}
+
+// sets entered data in local storage to view
+function displaySchedule() {
+    myDay.forEach(function (_thisHour) {
+        console.log(_thisHour.id)
+        $(`#${_thisHour.id}`).val(_thisHour.reminder);
+        console.log(_thisHour.reminder)
+    })
+}
+
+function storage() {
+    var savedDay = JSON.parse(localStorage.getItem("myDay"));
+
+    if (savedDay) {
+        myDay = savedDay;
+    }
+    displaySchedule();
+
+}
+
+saveSchedule();
+displaySchedule();
+
+
 getHeaderDate();
 
 // creates visuals for the form
@@ -88,13 +117,13 @@ myDay.forEach(function(thisHour) {
      var hourIndex = $("<div>")
      .text(`${thisHour.hour}${thisHour.meridiem}`)
      .attr({
-         "class": "col-md-2 hour"
+         "class": "col-md-1 hour"
  });
 
  // creates area to add events
  var eventEntry = $("<div>")
     .attr({
-        "class": "col-md-9 description p-0"
+        "class": "col-md-10 description p-0"
     });
     //shows if event is past, present or future
     var eventData = $("<textarea>");
@@ -115,49 +144,26 @@ myDay.forEach(function(thisHour) {
     }
 
     // Create save button   
-
-let saveBtn = $("<i class='far fa-save fa-lg'></i>")
-var savePlan = $("<button>")
+let saveButton = $("<i class='far fa-save fa-lg'></i>")
+var saveEvent = $("<button>")
 .attr({
     "class": "col-md-1 saveBtn"
 });
-savePlan.append(saveBtn);
-hourRow.append(hourIndex, eventEntry, savePlan);
+saveEvent.append(saveButton);
+hourRow.append(hourIndex, eventEntry, saveEvent);
 })
 
+// Loads saved localStorage data
+storage();
 
-// let nowHour24 = moment().format('H');
-// console.log(nowHour24)
-// let nowHour12 = moment().format('h');
-// console.log(nowHour12)
+// saved data used in localStorage
+$(".saveBtn").on("click", function(event) {
+    event.preventDefault();
+    var saveIndex = $(this).siblings(".description").children("textarea").attr("id");
+    myDay[saveIndex].reminder = $(this).siblings(".description").children("textarea").val();
+    console.log(saveIndex);
+    saveSchedule();
+    displaySchedule();
 
-// if (test) {
-//     nowHour24 = 13;
-//     nowHour12 = 1;
-// }
+})
 
-//using a save icon to save the event in the daily calendar
-// const saveIcon = $("#display-icon")
-
-// // Get the stored items from the to-do list from local storage
-// let storedPlans = JSON.parse(localStorage.getItem("storedPlans"));
-// if (test) {console.log(storedPlans)}
-
-// //If the plans were retrieved from local storage, update the plan array to it
-
-// //set variable referencing planner element
-// let $plannerDiv = $("#formPlanner");
-// $plannerDiv.empty();
-
-
-// // build the calendar by row for a fixed number of hours
-// for (let hour =9; hour <=17; hour ++) {
-//     let index = hour -9;
-// }
-
-// // build the row components in the calendar element
-
-// let $rowDiv =$("<div>");
-// $rowDiv.addClass("row");
-// $rowDiv.addClass("plannerRow");
-// $rowDiv.attr("hour-index", hour
