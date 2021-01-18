@@ -89,15 +89,16 @@ function displaySchedule() {
 
 function storage() {
     var savedDay = JSON.parse(localStorage.getItem("myDay"));
-
-    if (savedDay) {
+    console.log(savedDay)
+    if (savedDay != null) {
         myDay = savedDay;
+        console.log(myDay)
     }
     displaySchedule();
 
 }
 
-saveSchedule();
+
 displaySchedule();
 
 
@@ -117,29 +118,29 @@ myDay.forEach(function(thisHour) {
      var hourIndex = $("<div>")
      .text(`${thisHour.hour}${thisHour.meridiem}`)
      .attr({
-         "class": "col-md-1 hour"
+         "class": "col-md-2 hour"
  });
 
  // creates area to add events
  var eventEntry = $("<div>")
     .attr({
-        "class": "col-md-10 description p-0"
+        "class": "col-md-9 description p-0"
     });
     //shows if event is past, present or future
     var eventData = $("<textarea>");
     eventEntry.append(eventData);
     eventData.attr("id", thisHour.id);
     if (thisHour.time < moment().format("HH")) {
-        eventData.attr ({
-            "class": "past",
+        hourRow.attr ({
+            "class": "row past",
         })
     } else if (thisHour.time === moment().format("HH")) {
-        eventData.attr ({
-            "class": "present"
+       hourRow.attr ({
+            "class": "row present"
         })
     } else if (thisHour.time === moment().format("HH")) {
-        eventData.attr({
-            "class": "future"
+        hourRow.attr({
+            "class": "row future"
         })
     }
 
