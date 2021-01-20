@@ -10,7 +10,7 @@ This is a work/school day planner I've created to better organize my day to day 
 * [Providing a URL for the website](Providing-a-URL-for-the-website)
 * [GitHub Live Site](GitHub-Live-Site)
 * [Credits](Credits)
-*[License](Liense)
+* [License](License)
 
 ## Add Links into the HTML file
 1. Add Bootstrap Reference Links for *CSS* and *JavaScript* from the getbootstrap webpage
