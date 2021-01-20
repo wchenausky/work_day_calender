@@ -94,6 +94,7 @@ function storage() {
         myDay = savedDay;
         console.log(myDay)
     }
+    
     displaySchedule();
 
 }
