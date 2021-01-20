@@ -32,9 +32,9 @@ This is a  work/school day planner I'v created to better organize my day to day 
 (https://wchenausky.github.io/work_day_calender/)
 
 ## Credits
-Marissa NeSmith (https://github.com/marissanesmith)
-Ethan Dutcher (https://github.com/edutcher)
-W3 Schools (https://w3schools.com)
+* Marissa NeSmith (https://github.com/marissanesmith)
+* Ethan Dutcher (https://github.com/edutcher)
+* W3 Schools (https://w3schools.com)
 
 # License
 ![https://img.shields.io/github/license/wchenausky/work_day_calender](https://img.shields.io/github/license/wchenausky/work_day_calender)
